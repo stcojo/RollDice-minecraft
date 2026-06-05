@@ -150,18 +150,23 @@ public final class RollDice extends JavaPlugin {
 		return randomNum;
 	 }
 	
+	// Curated list of fair hostile mobs (excludes bosses/unfair mobs like
+	// WITHER, WARDEN, ELDER_GUARDIAN, ENDER_DRAGON). Kept up to date with 26.1.2.
+	static EntityType[] rollMobs = new EntityType[] {
+		EntityType.ZOMBIE, EntityType.ZOMBIE_VILLAGER, EntityType.HUSK, EntityType.DROWNED,
+		EntityType.SKELETON, EntityType.STRAY, EntityType.BOGGED, EntityType.WITHER_SKELETON,
+		EntityType.CREEPER, EntityType.SPIDER, EntityType.CAVE_SPIDER, EntityType.WITCH,
+		EntityType.SLIME, EntityType.MAGMA_CUBE, EntityType.SILVERFISH, EntityType.ENDERMITE,
+		EntityType.PHANTOM, EntityType.VINDICATOR, EntityType.EVOKER, EntityType.PILLAGER,
+		EntityType.RAVAGER, EntityType.VEX, EntityType.PIGLIN_BRUTE, EntityType.BLAZE,
+		EntityType.BREEZE, EntityType.CREAKING
+	};
+
 	public void spawnRandomMob(Player p){
-		EntityType[] t = new EntityType[5];
-		t[0] = EntityType.SKELETON;
-		t[1] = EntityType.ZOMBIE;
-		t[2] = EntityType.VINDICATOR;
-		t[3] = EntityType.EVOKER;
-		t[4] = EntityType.STRAY;
-		
-		int randomMob = r.nextInt(5);
-		
+		int randomMob = r.nextInt(rollMobs.length);
+
         World world = p.getWorld();
         Location targetLocation = p.getLocation();
-        world.spawnEntity(targetLocation, t[randomMob]);
+        world.spawnEntity(targetLocation, rollMobs[randomMob]);
 	}
 }
