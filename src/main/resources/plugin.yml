@@ -2,6 +2,7 @@ name: RollDice
 main: com.binslayer.rolldice.RollDice
 version: 1
 author: BinSlayer
+api-version: '1.21'
 commands:
    roll:
       description: This is a roll command.

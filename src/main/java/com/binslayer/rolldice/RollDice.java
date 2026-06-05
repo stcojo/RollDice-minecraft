@@ -119,7 +119,13 @@ public final class RollDice extends JavaPlugin {
 		Material randomMaterial;
 		do {
 			randomMaterial = materials[randomRangeBetter(0, materials.length)];
-		
+
+			// Only give real, obtainable items (skip AIR, technical blocks, and legacy entries)
+			if (randomMaterial.isLegacy() || !randomMaterial.isItem() || randomMaterial.isAir()) {
+				isItemGiven = false;
+				continue;
+			}
+
 			ItemStack newItem = new ItemStack(randomMaterial, 1);
 			p.getInventory().addItem(new ItemStack[] { newItem });
 			ItemStack[] arrayItems = p.getInventory().getContents();
